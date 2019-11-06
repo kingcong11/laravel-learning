@@ -12,27 +12,7 @@
 */
 
 
-
-
-Route::get('/', function () {
-
-    $tasks = [
-        'task 1',
-        'task 2',
-        'task 3'
-    ];
-
-
-    return view('welcome', [
-        'tasks' => $tasks
-    ]);
-});
-
-Route::get('/contact', function () {
-    return view('contact');
-});
-
-Route::get('/about', function () {
-    return view('about');
-});
+Route::get('/', 'PagesController@home');
+Route::get('/contact', 'PagesController@contact');
+Route::get('/about', 'PagesController@about');
 

@@ -7,10 +7,7 @@
     <title> @yield('title', 'Balagaboom') </title>
 </head>
 <body>
-
-    @yield('content')
     
-
     <u>
         <li>
             <a href="/contact">Contact Us</a>
@@ -22,5 +19,8 @@
             <a href="/">Home</a>
         </li>
     </u>
+
+    @yield('content')
+    
 </body>
 </html>

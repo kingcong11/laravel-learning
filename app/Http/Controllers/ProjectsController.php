@@ -32,18 +32,7 @@ class ProjectsController extends Controller
 
     public function store(Request $request)
     {
-
-        // $this->project->create([
-        //     'title' => request('title'),
-        //     'description' => request('desription')
-        // ]);
         
-        // return redirect('/projects');
-
-        /* ========================================= */
-
-        // dd($request);
-
         $this->project->title = request('title');
         $this->project->description = request('description');
 

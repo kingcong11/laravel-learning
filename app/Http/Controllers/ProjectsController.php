@@ -32,7 +32,7 @@ class ProjectsController extends Controller
 
     public function store(Request $request)
     {
-        
+
         $this->project->title = request('title');
         $this->project->description = request('description');
 

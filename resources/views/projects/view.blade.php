@@ -1,4 +1,4 @@
-@extends('layouts.user');
+@extends('layouts.user')
 
 @section('title', $project->title)
 
@@ -12,6 +12,17 @@
     </div>
 
 
+    @if ($project->tasks->count())
+
+        <div class="tasks">
+            @foreach ($project->tasks as $task)
+                <li>{{ $task->task_name }}</li>
+            @endforeach
+        </div>
+        
+    @endif
+
+    
     <br><br><hr>
 
 

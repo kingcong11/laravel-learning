@@ -33,10 +33,12 @@ class ProjectsController extends Controller
 
         // Project::create(request()->all()); //serialize approach "make sure that guarded is set to prevent any malicious input"
 
-        $this->project->create([
-            'title' => request('title'),
-            'description' => request('description')
+        $validated = request()->validate([
+            'title' => 'required|min:3',
+            'description' => 'required|min:3'
         ]);
+
+        $this->project->create($validated);
 
         return redirect('/projects');
     }

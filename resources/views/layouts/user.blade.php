@@ -9,6 +9,12 @@
 
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/minty/bootstrap.min.css" type="text/css">
+    <style>
+        .has-error{
+            border-color:red;
+        }
+    </style>
+    
 </head>
 <body>
 

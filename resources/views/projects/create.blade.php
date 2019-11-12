@@ -8,12 +8,14 @@
 
     <form method="POST" action="/projects">
         {{ csrf_field() }}
-        <div>
-            <input type="text" name="title" placeholder="Project Title">
+        <div class="form-group">
+        <label for="title">Title</label>
+            <input type="text" id="title" name="title" class="form-control" placeholder="Project Title">
         </div>
 
-        <div>
-            <textarea name="description" id="description" cols="30" rows="10" placeholder="Project Description"></textarea>        
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea name="description" id="description" class="form-control" cols="30" rows="10" placeholder="Project Description"></textarea>        
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>

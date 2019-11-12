@@ -16,10 +16,8 @@ class ProjectsController extends Controller
     public function index()
     {
 
-        $projects = Project::all();
-
         $data = [
-            'projects' => $projects
+            'projects' => $this->project->all()
         ];
 
         return view('projects/index', $data);
@@ -33,43 +31,42 @@ class ProjectsController extends Controller
     public function store(Request $request)
     {
 
-        $this->project->title = request('title');
-        $this->project->description = request('description');
+        // Project::create(request()->all()); //serialize approach "make sure that guarded is set to prevent any malicious input"
 
-        $this->project->save();
+        $this->project->create([
+            'title' => request('title'),
+            'description' => request('description')
+        ]);
 
         return redirect('/projects');
-
     }
 
-    public function show($id)
+    public function show(Project $project)
     {
-        //
-    }
 
-    public function edit($id)
-    {   
-
+        /* other data for compact */
         $data = [
-            "project" => $this->project->findOrFail($id)
+            "sample_data" => 1,
+            "sample_array" => array(
+                'x',
+                'y'
+            ),
         ];
 
-
-
-        return view('projects.edit', $data);
+        return view('projects.view', compact('project', 'data'));
     }
 
-    public function update(Request $request, $id)
+    public function edit(Project $project)
+    {   
+        return view('projects.edit', compact('project'));
+    }
+
+    public function update(Project $project)
     {
-        $project = $this->project->findOrFail($id);
 
-        $project->title = $request->title;
-        $project->description = $request->description;
-
-        $project->save();
+        $project->update(request()->all());
 
         return redirect('/projects');
-
     }
 
     public function destroy($id)

@@ -51,7 +51,7 @@ class ProjectsController extends Controller
     {   
 
         $data = [
-            "project" => $this->project->find($id)
+            "project" => $this->project->findOrFail($id)
         ];
 
 
@@ -61,7 +61,7 @@ class ProjectsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $project = $this->project->find($id);
+        $project = $this->project->findOrFail($id);
 
         $project->title = $request->title;
         $project->description = $request->description;
@@ -74,6 +74,8 @@ class ProjectsController extends Controller
 
     public function destroy($id)
     {
-        //
+        $this->project->findOrFail($id)->delete();
+        
+        return redirect('/projects');
     }
 }

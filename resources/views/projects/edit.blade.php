@@ -9,8 +9,8 @@
 
         <form method="POST" action="/projects/{{ $project->id }}">
 
-            {{ csrf_field() }}
-            {{ method_field('PATCH') }}
+            @method('PATCH')
+            @csrf
 
             <div class="field form-group">
 
@@ -28,9 +28,17 @@
 
             <div class="field form-group">
                 <button type="submit" id="submit" class="btn btn-primary">Update Project</button>
-                <button type="button"  id="" class="btn btn-danger">Delete</button>
+                <button type="submit" form="delete" class="btn btn-danger">Delete</button>
             </div>
             
+
+        </form>
+
+
+        <form action="/projects/{{ $project->id }}" method="post" id="delete">
+
+            @method('DELETE')
+            @csrf
 
         </form>
 

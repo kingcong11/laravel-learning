@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title> @yield('title', 'Balagaboom') </title>
+
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/minty/bootstrap.min.css" type="text/css">
 </head>
 <body>
-    
+
     <u>
         <li>
             <a href="/contact">Contact Us</a>
@@ -23,7 +27,11 @@
         </li>
     </u>
 
-    @yield('content')
+    <div class="container">
+
+        @yield('content')
+
+    </div>
     
 </body>
 </html>

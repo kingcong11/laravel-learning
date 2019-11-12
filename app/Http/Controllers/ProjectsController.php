@@ -48,13 +48,28 @@ class ProjectsController extends Controller
     }
 
     public function edit($id)
-    {
-        //
+    {   
+
+        $data = [
+            "project" => $this->project->find($id)
+        ];
+
+
+
+        return view('projects.edit', $data);
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $project = $this->project->find($id);
+
+        $project->title = $request->title;
+        $project->description = $request->description;
+
+        $project->save();
+
+        return redirect('/projects');
+
     }
 
     public function destroy($id)

@@ -18,10 +18,10 @@ Route::get('/about', 'PagesController@about');
 
 
 /* Specific Routes */
-
+Route::post('projects/{project}/tasks', 'ProjectTasksController@store');
 
 
 /* Resource Routes */
 Route::resource('projects', 'ProjectsController');
-
+Route::resource('tasks', 'ProjectTasksController');
 

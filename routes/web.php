@@ -11,6 +11,17 @@
 |
 */
 
+app()->singleton('App\Services\Twitter', function(){
+    return new \App\Services\Twitter('samplekey');
+});
+
+
+
+
+// Route::get('/', function(){
+//     dd(app('App\Services\Example'));
+// });
+
 /* Standard Routes */
 Route::get('/', 'PagesController@home');
 Route::get('/contact', 'PagesController@contact');

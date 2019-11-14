@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Project;
+use Illuminate\Filesystem\Filesystem;
+use App\Services\Twitter;
 
 class ProjectsController extends Controller
 {
@@ -43,7 +45,7 @@ class ProjectsController extends Controller
         return redirect('/projects');
     }
 
-    public function show(Project $project)
+    public function show(Project $project, Twitter $twitter)
     {
 
         /* other data for compact */

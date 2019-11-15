@@ -34,4 +34,12 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
 
+
+    'twitter' => [
+        'keys' => [
+            'public' => env('TWITTER_PUB_KEY'),
+            'private' => env('TWITTER_PRIV_KEY')
+        ]
+    ]
+
 ];

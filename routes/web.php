@@ -11,19 +11,15 @@
 |
 */
 
-app()->singleton('App\Services\Twitter', function(){
-    return new \App\Services\Twitter('samplekey');
+use App\Repositories\UserRepositoryInterface;
+use App\Services\Twitter;
+
+Route::get('/', function(UserRepositoryInterface $user, Twitter $twitter){
+    dd($user, $twitter);
 });
 
-
-
-
-// Route::get('/', function(){
-//     dd(app('App\Services\Example'));
-// });
-
 /* Standard Routes */
-Route::get('/', 'PagesController@home');
+// Route::get('/', 'PagesController@home');
 Route::get('/contact', 'PagesController@contact');
 Route::get('/about', 'PagesController@about');
 

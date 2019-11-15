@@ -57,6 +57,8 @@ class ProjectsController extends Controller
             ),
         ];
 
+        dd($twitter);
+
         return view('projects.view', compact('project', 'data'));
     }
 

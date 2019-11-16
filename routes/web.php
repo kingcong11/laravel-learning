@@ -11,15 +11,15 @@
 |
 */
 
-use App\Repositories\UserRepositoryInterface;
-use App\Services\Twitter;
+// use App\Repositories\UserRepositoryInterface;
+// use App\Services\Twitter;
 
-Route::get('/', function(UserRepositoryInterface $user, Twitter $twitter){
-    dd($user, $twitter);
-});
+// Route::get('/', function(UserRepositoryInterface $user, Twitter $twitter){
+//     dd($user, $twitter);
+// });
 
 /* Standard Routes */
-// Route::get('/', 'PagesController@home');
+Route::get('/', 'PagesController@home');
 Route::get('/contact', 'PagesController@contact');
 Route::get('/about', 'PagesController@about');
 
@@ -32,3 +32,7 @@ Route::post('projects/{project}/tasks', 'ProjectTasksController@store');
 Route::resource('projects', 'ProjectsController');
 Route::resource('tasks', 'ProjectTasksController');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -13,13 +13,21 @@ class ProjectsController extends Controller
 
     public function __construct(){
         $this->project = new Project();
+
+        $this->middleware('auth')->only([
+            'create',
+            'store',
+            'edit',
+            'update',
+            'destroy'
+        ]);
     }
 
     public function index()
     {
 
         $data = [
-            'projects' => $this->project->all()
+            'projects' => $this->project->where('owner_id', auth()->id())->get()
         ];
 
         return view('projects/index', $data);
@@ -40,6 +48,8 @@ class ProjectsController extends Controller
             'description' => 'required|min:3'
         ]);
 
+        $validated['owner_id'] = auth()->id();
+
         $this->project->create($validated);
 
         return redirect('/projects');
@@ -57,7 +67,6 @@ class ProjectsController extends Controller
             ),
         ];
 
-        dd($twitter);
 
         return view('projects.view', compact('project', 'data'));
     }

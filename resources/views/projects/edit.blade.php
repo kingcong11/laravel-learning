@@ -26,6 +26,11 @@
 
             </div>
 
+
+
+
+            @include('errors.errors-section')
+
             <div class="field form-group">
                 <button type="submit" id="submit" class="btn btn-primary">Update Project</button>
                 <button type="submit" form="delete" class="btn btn-danger">Delete</button>

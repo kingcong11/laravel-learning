@@ -28,7 +28,8 @@ class ProjectsController extends Controller
     {
 
         $data = [
-            'projects' => $this->project->where('owner_id', auth()->id())->get()
+            // 'projects' => $this->project->where('owner_id', auth()->id())->get()
+            'projects' => auth()->user()->projects
         ];
 
 
@@ -47,16 +48,13 @@ class ProjectsController extends Controller
 
         // Project::create(request()->all()); //serialize approach "make sure that guarded is set to prevent any malicious input"
 
-        $validated = request()->validate([
-            'title' => 'required|min:3',
-            'description' => 'required|min:3'
-        ]);
+        $validated = $this->validateProject();
 
         $validated['owner_id'] = auth()->id();
 
         $newProject = $this->project->create($validated);
 
-        \Mail::to('niicviey@gmail.com')->send(
+        \Mail::to($newProject->owner->email)->send(
             new ProjectCreated($newProject)
         );
 
@@ -90,7 +88,10 @@ class ProjectsController extends Controller
     {
 
         abort_unless(\Gate::allows('update', $project), 403);
-        $project->update(request()->all());
+
+        $validated = $this->validateProject();
+
+        $project->update($validated);
 
         return redirect('/projects');
     }
@@ -103,4 +104,13 @@ class ProjectsController extends Controller
         
         return redirect('/projects');
     }
+
+    private function validateProject(){
+        return request()->validate([
+                    'title' => 'required|min:3',
+                    'description' => 'required|min:3'
+              ]);
+    }
+
+
 }

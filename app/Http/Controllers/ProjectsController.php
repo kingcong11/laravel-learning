@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use Illuminate\Filesystem\Filesystem;
 use App\Services\Twitter;
-use App\Mail\ProjectCreated;
+use App\Events\NewProjectCreated;
 
 class ProjectsController extends Controller
 {
@@ -54,9 +54,7 @@ class ProjectsController extends Controller
 
         $newProject = $this->project->create($validated);
 
-        \Mail::to($newProject->owner->email)->send(
-            new ProjectCreated($newProject)
-        );
+        event(new NewProjectCreated($newProject));
 
         return redirect('/projects');
     }

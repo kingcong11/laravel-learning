@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use Illuminate\Filesystem\Filesystem;
 use App\Services\Twitter;
+use App\Mail\ProjectCreated;
 
 class ProjectsController extends Controller
 {
@@ -30,6 +31,9 @@ class ProjectsController extends Controller
             'projects' => $this->project->where('owner_id', auth()->id())->get()
         ];
 
+
+        
+
         return view('projects/index', $data);
     }
 
@@ -50,7 +54,11 @@ class ProjectsController extends Controller
 
         $validated['owner_id'] = auth()->id();
 
-        $this->project->create($validated);
+        $newProject = $this->project->create($validated);
+
+        \Mail::to('niicviey@gmail.com')->send(
+            new ProjectCreated($newProject)
+        );
 
         return redirect('/projects');
     }
@@ -67,26 +75,31 @@ class ProjectsController extends Controller
             ),
         ];
 
+        abort_unless(\Gate::allows('update', $project), 403);
 
         return view('projects.view', compact('project', 'data'));
     }
 
     public function edit(Project $project)
     {   
+        abort_unless(\Gate::allows('update', $project), 403);
         return view('projects.edit', compact('project'));
     }
 
     public function update(Project $project)
     {
 
+        abort_unless(\Gate::allows('update', $project), 403);
         $project->update(request()->all());
 
         return redirect('/projects');
     }
 
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        $this->project->findOrFail($id)->delete();
+        
+        abort_unless(\Gate::allows('update', $project), 403);
+        $this->project->findOrFail($project->id)->delete();
         
         return redirect('/projects');
     }

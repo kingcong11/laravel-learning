@@ -15,11 +15,22 @@
 // use App\Services\Twitter;
 
 // Route::get('/', function(UserRepositoryInterface $user, Twitter $twitter){
-//     dd($user, $twitter);
+//     dd($user->create('balagaboom'), $twitter);
+//     $user->create('sample');
 // });
 
+use App\Notifications\ProjectSubscriptionFailed;
+
+Route::get('/', function(){
+    $user = App\User::first();
+
+    $user->notify(new ProjectSubscriptionFailed);
+
+    return 'done';
+});
+
 /* Standard Routes */
-Route::get('/', 'PagesController@home');
+// Route::get('/', 'PagesController@home');
 Route::get('/contact', 'PagesController@contact');
 Route::get('/about', 'PagesController@about');
 

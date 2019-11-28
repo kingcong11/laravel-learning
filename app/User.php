@@ -9,7 +9,7 @@ use App\Models\Project;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable; // $user->notify(new ProjectSubscriptionFailed)
 
     /**
      * The attributes that are mass assignable.

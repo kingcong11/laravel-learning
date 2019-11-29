@@ -9,6 +9,7 @@
 
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/minty/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ mix('/css/app.css') }}">
     <style>
         .has-error{
             border-color:red;
@@ -45,5 +46,12 @@
     
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+<script src="{{ mix('/js/vendor.js') }}"></script>
+<script src="{{ mix('/js/manifest.js') }}"></script>
+<script src="{{ mix('/js/app.js') }}"></script>
+
+
+
 @yield('script')
 </html>

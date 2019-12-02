@@ -20,7 +20,8 @@ class ProjectsController extends Controller
             'store',
             'edit',
             'update',
-            'destroy'
+            'destroy',
+            'index'
         ]);
     }
 
@@ -55,6 +56,10 @@ class ProjectsController extends Controller
         $newProject = $this->project->create($validated);
 
         event(new NewProjectCreated($newProject));
+
+        // Flash message here
+        flash('New Project has been created!');
+
 
         return redirect('/projects');
     }

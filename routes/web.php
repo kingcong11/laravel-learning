@@ -13,6 +13,7 @@
 
 // use App\Repositories\UserRepositoryInterface;
 // use App\Services\Twitter;
+// use Illuminate\Http\Request;
 
 // Route::get('/', function(UserRepositoryInterface $user, Twitter $twitter){
 //     dd($user->create('balagaboom'), $twitter);
